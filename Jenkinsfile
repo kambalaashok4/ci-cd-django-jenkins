@@ -56,6 +56,12 @@ pipeline {
                 '''
             }
         }
+        stage('deploy to ecs') {
+            steps {
+                sh '''
+                aws ecs update-service --cluster comfortable-gorilla-jslweh --service cicd-jenkins-service --force-new-deployment --region us-east-1
+                '''
+            }
     }
 
     post {
