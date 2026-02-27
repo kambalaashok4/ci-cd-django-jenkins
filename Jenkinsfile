@@ -20,15 +20,14 @@ pipeline {
         stage('Run Django Checks') {
             steps {
                 sh '''
-                python manage.py check
+                python3 manage.py check
                 '''
             }
         }
         stage('Run Tests') {
             steps {
                 sh '''
-                . $VENV/bin/activate
-                python manage.py test
+                python3 manage.py test
                 '''
             }
         }
