@@ -9,7 +9,7 @@ pipeline {
 
         stage('Checkout Code') {
             steps {
-                git branch: 'main', url: 'https://github.com/yourusername/django-app.git'
+                git branch: 'main', url: 'https://github.com/kambalaashok4/ci-cd-django-jenkins.git'
             }
         }
 
