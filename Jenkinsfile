@@ -1,10 +1,9 @@
 pipeline {
-    agent any
-
-    environment {
-        VENV = "venv"
+    agent {
+        docker {
+            image 'python:3.12-slim'
+        }
     }
-
     stages {
 
         stage('Checkout Code') {
@@ -13,11 +12,9 @@ pipeline {
             }
         }
 
-        stage('Setup Python Environment') {
+        stage('Install dependencies') {
             steps {
                 sh '''
-                python -m venv $VENV
-                . $VENV/bin/activate
                 pip install --upgrade pip
                 pip install -r requirements.txt
                 '''
@@ -27,17 +24,37 @@ pipeline {
         stage('Run Django Checks') {
             steps {
                 sh '''
-                . $VENV/bin/activate
                 python manage.py check
                 '''
             }
         }
-
         stage('Run Tests') {
             steps {
                 sh '''
                 . $VENV/bin/activate
                 python manage.py test
+                '''
+            }
+        }
+        stage('build docker image') {
+            steps {
+                sh '''
+                docker build -t django-app:latest .
+                '''
+            }
+        }
+        stage('Login to AWS ECR') {
+            steps {
+                sh '''
+                aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 865487342006.dkr.ecr.us-east-1.amazonaws.com
+                '''
+            }
+        }
+        stage('Push Docker Image to ECR') {
+            steps {
+                sh '''
+                docker tag cicd:latest 865487342006.dkr.ecr.us-east-1.amazonaws.com/cicd:latest
+                docker push 865487342006.dkr.ecr.us-east-1.amazonaws.com/cicd:latest
                 '''
             }
         }
