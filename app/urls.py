@@ -1,5 +1,5 @@
 """
-URL configuration for MyProfile project.
+URL configuration for app project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/6.0/topics/http/urls/
@@ -31,7 +31,7 @@ Including another URLconf
 
 #urlpatterns = [
 #    path('admin/', admin.site.urls),
-#    path('', include('MyProfile.urls')),
+#    path('', include('app.urls')),
 #]
 
 
