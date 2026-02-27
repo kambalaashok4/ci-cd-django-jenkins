@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    env {
+    environment {
         build_image = 'cicd:${BUILD_NUMBER}'
     }
     stages {
