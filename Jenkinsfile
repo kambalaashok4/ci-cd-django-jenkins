@@ -34,7 +34,7 @@ pipeline {
         stage('build docker image') {
             steps {
                 sh '''
-                docker build -t django-app:latest .
+                docker build -t cicd:latest .
                 '''
             }
         }
