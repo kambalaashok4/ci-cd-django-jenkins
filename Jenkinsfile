@@ -1,6 +1,7 @@
 pipeline {
     agent any
-
+    env {
+        build_image = 'cicd:${BUILD_NUMBER}'
     }
     stages {
 
@@ -36,7 +37,7 @@ pipeline {
         stage('build docker image') {
             steps {
                 sh '''
-                docker build -t cicd:latest .
+                docker build -t cicd:${BUILD_NUMBER} .
                 '''
             }
         }
@@ -50,8 +51,8 @@ pipeline {
         stage('Push Docker Image to ECR') {
             steps {
                 sh '''
-                docker tag cicd:latest 865487342006.dkr.ecr.us-east-1.amazonaws.com/cicd:latest
-                docker push 865487342006.dkr.ecr.us-east-1.amazonaws.com/cicd:latest
+                docker tag cicd:${BUILD_NUMBER} 865487342006.dkr.ecr.us-east-1.amazonaws.com/cicd:${BUILD_NUMBER}
+                docker push 865487342006.dkr.ecr.us-east-1.amazonaws.com/cicd:${BUILD_NUMBER}
                 '''
             }
         }
