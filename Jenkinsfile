@@ -153,9 +153,9 @@ pipeline {
         script {
 
             // Determine environment based on branch
-            def deployEnv = (env.BRANCH_NAME == 'main') ? 'production' : 'staging'
+            // def deployEnv = (env.BRANCH_NAME == 'main') ? 'production' : 'staging'
 
-            echo "Deploying to environment: ${deployEnv}"
+            // echo "Deploying to environment: ${deployEnv}"
 
             sh """
             cd ${TERRAFORM_DIR}
