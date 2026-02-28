@@ -85,6 +85,7 @@ pipeline {
         ECR_REPO = "865487342006.dkr.ecr.us-east-1.amazonaws.com/cicd"
         IMAGE_TAG = "${BUILD_NUMBER}"
         TERRAFORM_DIR = "terraform"
+        BRANCH_NAME = "main"
     }
 
     stages {
