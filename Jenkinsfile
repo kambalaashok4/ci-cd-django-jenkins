@@ -164,8 +164,8 @@ pipeline {
                     sh """
                     cd ${TERRAFORM_DIR}
                     terraform init 
-                    terraform plan -var="image_uri=${ECR_REPO}:${IMAGE_TAG}"
-                    terraform apply -auto-approve -var="image_uri=${ECR_REPO}:${IMAGE_TAG}"
+                    terraform plan -var="image_uri=${IMAGE_TAG}"
+                    terraform apply -auto-approve -var="image_uri=${IMAGE_TAG}"
                     """
                 }
             }
