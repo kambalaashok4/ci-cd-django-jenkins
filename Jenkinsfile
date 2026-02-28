@@ -147,12 +147,18 @@ pipeline {
         // -----------------------------
         stage('Trigger Deployment') {
             when {
-                branch 'deploy-dev', 'deploy-staging', 'deploy-prod'
+                branch 'main'
             }
             steps {
                 script {
                     // Determine environment based on branch
-                    def environment = env.BRANCH_NAME.replace('deploy-', '')
+                    def environment = static main(args) {
+                        if (env.BRANCH_NAME == 'main') {
+                            return 'production'
+                        } else {
+                            return 'staging'
+                        }
+                    }
                     echo "Deploying to environment: ${environment}"
 
                     sh """
