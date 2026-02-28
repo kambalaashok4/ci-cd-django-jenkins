@@ -3,15 +3,15 @@
 # ECS SERVICE INFO
 #############################################
 
-output "ecs_service_name" {
-  description = "ECS Service Name"
-  value       = aws_ecs_service.app.name
-}
+# output "ecs_service_name" {
+#   description = "ECS Service Name"
+#   value       = aws_ecs_service.app.name
+# }
 
-output "ecs_service_arn" {
-  description = "ECS Service ARN"
-  value       = aws_ecs_service.app.id
-}
+# output "ecs_service_arn" {
+#   description = "ECS Service ARN"
+#   value       = aws_ecs_service.app.id
+# }
 
 #############################################
 # TASK DEFINITION INFO
