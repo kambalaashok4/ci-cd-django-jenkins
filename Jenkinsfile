@@ -146,30 +146,27 @@ pipeline {
 
         // -----------------------------
         stage('Trigger Deployment') {
-            when {
-                branch 'main'
-            }
-            steps {
-                script {
-                    // Determine environment based on branch
-                    def environment = static main(args) {
-                        if (env.BRANCH_NAME == 'main') {
-                            return 'production'
-                        } else {
-                            return 'staging'
-                        }
-                    }
-                    echo "Deploying to environment: ${environment}"
+    when {
+        branch 'main'
+    }
+    steps {
+        script {
 
-                    sh """
-                    cd ${TERRAFORM_DIR}
-                    terraform init 
-                    terraform plan -var="image_uri=${IMAGE_TAG}"
-                    terraform apply -auto-approve -var="image_uri=${IMAGE_TAG}"
-                    """
-                }
-            }
+            // Determine environment based on branch
+            def deployEnv = (env.BRANCH_NAME == 'main') ? 'production' : 'staging'
+
+            echo "Deploying to environment: ${deployEnv}"
+
+            sh """
+            cd ${TERRAFORM_DIR}
+            terraform init
+            terraform plan -var="image_tag=${IMAGE_TAG}"
+            terraform apply -auto-approve -var="image_tag=${IMAGE_TAG}"
+            """
         }
+    }
+}
+        
     }
 
     post {
