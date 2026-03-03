@@ -10,7 +10,7 @@ resource "aws_ecs_task_definition" "app" {
 
   container_definitions = jsonencode([
     {
-      name  = "app"
+      name  = "app1"
       #image = "${data.aws_ecr_repository.service.repository_url}:${data.aws_ecr_image.service_image.image_tag}"
       image = "${data.aws_ecr_repository.service.repository_url}:${var.image_tag}"
       
