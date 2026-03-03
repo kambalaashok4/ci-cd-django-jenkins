@@ -67,22 +67,22 @@ pipeline {
         }
 
         // -----------------------------
-        stage('Trigger Deployment') {
-    when {
-        branch 'main'
-    }
-    steps {
-        script {
+//         stage('Trigger Deployment') {
+//     when {
+//         branch 'main'
+//     }
+//     steps {
+//         script {
 
-            sh """
-            cd ${TERRAFORM_DIR}
-            terraform init
-            terraform plan -var="image_tag=${IMAGE_TAG}"
-            terraform apply -auto-approve -var="image_tag=${IMAGE_TAG}"
-            """
-        }
-    }
-}
+//             sh """
+//             cd ${TERRAFORM_DIR}
+//             terraform init
+//             terraform plan -var="image_tag=${IMAGE_TAG}"
+//             terraform apply -auto-approve -var="image_tag=${IMAGE_TAG}"
+//             """
+//         }
+//     }
+// }
         
     }
 
