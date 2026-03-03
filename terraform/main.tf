@@ -25,17 +25,17 @@ resource "aws_ecs_task_definition" "app" {
   ])
 }
 
-resource "aws_ecs_service" "app" {
-  name            = "my-app-service"
-  cluster         = data.aws_ecs_cluster.existing.id
-  task_definition = aws_ecs_task_definition.app.arn
-  launch_type     = "FARGATE"
-  desired_count   = 1
+# resource "aws_ecs_service" "app" {
+#   name            = "my-app-service"
+#   cluster         = data.aws_ecs_cluster.existing.id
+#   task_definition = aws_ecs_task_definition.app.arn
+#   launch_type     = "FARGATE"
+#   desired_count   = 1
 
-  network_configuration {
+#   network_configuration {
     
-    subnets = [data.aws_subnets.public1.ids[0], data.aws_subnets.public2.ids[0]]
-    security_groups = [data.aws_security_group.ecs_service_sg.id]
-    assign_public_ip = true
-  }
-}
+#     subnets = [data.aws_subnets.public1.ids[0], data.aws_subnets.public2.ids[0]]
+#     security_groups = [data.aws_security_group.ecs_service_sg.id]
+#     assign_public_ip = true
+#   }
+# }
