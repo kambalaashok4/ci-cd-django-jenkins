@@ -81,7 +81,7 @@ pipeline {
 //             terraform plan -var="image_tag=${IMAGE_TAG}"
 //             terraform apply -auto-approve -var="image_tag=${IMAGE_TAG}"
 //             """
-//
+//wqqwwqww
 //         }
 //     }
 //added comments
