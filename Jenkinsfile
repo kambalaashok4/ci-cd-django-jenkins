@@ -68,12 +68,12 @@ pipeline {
         }
 
         // -----------------------------
-//         stage('Trigger Deployment') {
-//     when {
-//         branch 'main'
-//     }
-//     steps {
-//         script {
+        stage('Trigger Deployment') {
+    when {
+        branch 'main'
+    }
+    steps {
+        script {
 
 //             sh """
 //             cd ${TERRAFORM_DIR}
