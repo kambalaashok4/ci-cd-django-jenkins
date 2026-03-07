@@ -7,7 +7,6 @@ pipeline {
         ECR_REPO = "865487342006.dkr.ecr.us-east-1.amazonaws.com/cicd"
         IMAGE_TAG = "${BUILD_NUMBER}"
         TERRAFORM_DIR = "terraform"
-        BRANCH_NAME = "main"
     }
 
     stages {
@@ -15,8 +14,8 @@ pipeline {
         // -----------------------------
         stage('Checkout Code') {
             steps {
-                //git branch: 'main', url: 'https://github.com/kambalaashok4/ci-cd-django-jenkins.git'
                 checkout scm
+                //git branch: 'main', url: 'https://github.com/kambalaashok4/ci-cd-django-jenkins.git'
             }
         }
 
@@ -67,7 +66,7 @@ pipeline {
             }
         }
 
-        // -----------------------------
+        // ----------------------------- adding cmommnets to test PR request to test gh-app auth V2
         stage('Trigger Deployment') {
     when {
         branch 'main'
@@ -99,8 +98,8 @@ pipeline {
         failure {
             echo "Pipeline Failed ❌"
             sh """
-            docker rmi cicd:${IMAGE_TAG} ${ECR_REPO}:${IMAGE_TAG}
-            docker system prune -af
+            docker rmi cicd:${IMAGE_TAG} ${ECR_REPO}:${IMAGE_TAG} || true
+            docker system prune -af || true
             """
         }
     }
