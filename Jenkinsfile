@@ -98,8 +98,8 @@ pipeline {
         failure {
             echo "Pipeline Failed ❌"
             sh """
-            docker rmi cicd:${IMAGE_TAG} ${ECR_REPO}:${IMAGE_TAG}
-            docker system prune -af
+            docker rmi cicd:${IMAGE_TAG} ${ECR_REPO}:${IMAGE_TAG} || true
+            docker system prune -af || true
             """
         }
     }
