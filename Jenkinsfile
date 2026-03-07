@@ -7,7 +7,6 @@ pipeline {
         ECR_REPO = "865487342006.dkr.ecr.us-east-1.amazonaws.com/cicd"
         IMAGE_TAG = "${BUILD_NUMBER}"
         TERRAFORM_DIR = "terraform"
-        BRANCH_NAME = "main"
     }
 
     stages {
@@ -68,24 +67,22 @@ pipeline {
         }
 
         // -----------------------------
-//         stage('Trigger Deployment') {
-//     when {
-//         branch 'main'
-//     }
-//     steps {
-//         script {
+        stage('Trigger Deployment') {
+    when {
+        branch 'main'
+    }
+    steps {
+        script {
 
-//             sh """
-//             cd ${TERRAFORM_DIR}
-//             terraform init
-//             terraform plan -var="image_tag=${IMAGE_TAG}"
-//             terraform apply -auto-approve -var="image_tag=${IMAGE_TAG}"
-//             """
-//wqqwwqww
-//         }
-//     }
-//added comments
-// }
+            sh """
+            cd ${TERRAFORM_DIR}
+            terraform init
+            terraform plan -var="image_tag=${IMAGE_TAG}"
+            terraform apply -auto-approve -var="image_tag=${IMAGE_TAG}"
+            """
+        }
+    }
+}
         
     }
 
