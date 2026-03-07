@@ -66,7 +66,7 @@ pipeline {
             }
         }
 
-        // ----------------------------- adding cmommnets to test PR request to test gh-app auth
+        // ----------------------------- adding cmommnets to test PR request to test gh-app auth V2
         stage('Trigger Deployment') {
     when {
         branch 'main'
