@@ -66,7 +66,7 @@ pipeline {
             }
         }
 
-        // -----------------------------
+        // ----------------------------- adding cmommnets to test PR request
         stage('Trigger Deployment') {
     when {
         branch 'main'
